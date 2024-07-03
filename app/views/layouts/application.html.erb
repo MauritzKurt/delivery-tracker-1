@@ -3,6 +3,7 @@
   <head>
     <title>Delivery Tracker 1</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/css/my_styles.css">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,6 +12,32 @@
   </head>
 
   <body>
+    <nav>
+      <a href="/">Delivery Tracker</a> | 
+
+      <% if current_user != nil %>
+        <a href="/users/sign_edit">Edit profile</a> | 
+        <a href="/users/sign_out">Sign out</a>
+      <% else %>
+        <a href="/users/sign_up">Sign up</a> | 
+        <a href="/users/sign_in">Sign in</a>
+      <% end %>
+    </nav>
+
+    <hr>
+
+    <% if notice.present? %>
+      <div style="color: green">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert.present? %>
+      <div style="color: red">
+        <%= alert %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
